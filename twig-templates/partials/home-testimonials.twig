@@ -1,0 +1,63 @@
+{% set testimonials = function('get_fg_post_type', 'testimonial', 100, 'rand') %}
+<div class="section section-home-testimonials" >
+    <div class="container">
+        <div class="inner-container">
+            {% if testimonials | length > 0 %}
+            <div class="carousel slide testimonial-carousel carousel-fade carousel-text" id="testimonial-carousel" data-interval="10000" data-pause="null" >
+                <div class="carousel-inner" >
+                    {% for item  in  testimonials %}
+                    <div class="item {% if loop.first %}active{% endif %}">
+                        <div class="card-details">
+                            <h2>{{item.title}}</h2>
+                            <div class="snippet-content">
+                                {% for soundbite in item.get_field('testimonial-sound-bite') | randomize | slice(0,1) %}
+                                    {% if soundbite | first | length > 5 %}
+                                    "{{soundbite |first}}"
+                                    {% else %}
+                                    "{{item.get_field('fg-summary')}}"
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            {% if item.get_field('fg-source') | length > 0 %}
+                            <div class="snippet-media">
+                                <span>
+                                    ~
+                                    {% if item.get_field('fg-source') %}<a href="{{item.get_field('fg-source')}}" target="_blank>{% endif %}
+                                    {{item.get_field('fg-name')}}
+                                    {% if item.get_field('fg-location') %} <span>({{item.get_field('fg-location')}})</span>{% endif %}
+                                    {% if item.get_field('fg-source') %}</a>{% endif %}
+                                </span>
+                            </div>
+                        {% endif %}
+                        {% set source_type = item.get_field('fg-source-type') %}
+                          <div style="width: 266px; margin: 30px auto 45px; ">
+                            <div class="pull-left">
+                            {% if  source_type  == 'tripadvisor' %}
+                                <img style="width: auto;" src="{{theme.link}}/assets/images/logo-tripadvisor-owl.png" alt="Tripadvisor logo" />
+                            {% elseif source_type  == 'fanferret' %}
+                                <img style="width: auto;" src="{{theme.link}}/" alt="fanferret logo" />
+                            {% endif %}
+                            </div>
+                            <div class="pull-left" style="position: relative; top:-4px;; margin-left: 12px;text-align: left;line-height: 1.3em;" >
+                              {% if  source_type  == 'tripadvisor' %}<div style="font-size: 1.1em;">TripAdvisor Review</div>{% endif %}
+                              <div style="font-size: 0.9em;">{{item.get_field('fg-date')}}</div>
+                            </div>
+                            <div class="clearfix"></div>
+                          </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            <div class="testimonial-more-button" >
+                <a href="{{function('get_post_type_archive_link','testimonial')}}" class="btn btn-primary">
+                    More Testimonials
+                </a>
+                <a href="{{config.booking.url}}" target="_blank" class="btn btn-primary">
+                    Rates &amp; Availability
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

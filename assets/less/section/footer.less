@@ -1,0 +1,110 @@
+&.section-footer {
+  background-color: #ACACAC;
+  //.box-shadow(inset 0px -1px 92px 0px rgba(0,0,0,0.25));
+  background-color: rgba(255,255,255,0.9);
+
+  h3.widget-title {
+    .font-size(1.9);
+    margin-bottom: -4px;
+    text-align: center;
+  }
+  a {
+    &, &:visited, &:active, &:focus {
+      color: @body-color;
+    }
+    &:hover {
+      color: @link-color-hover;
+    }
+  }
+  ul.menu {
+    text-align: center;
+    li {
+      line-height: 1.4em;
+      .font-size(1.5);
+      display: inline;
+      margin-right: @base-margin;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  .social-icons {
+    a {
+      .font-size(3);
+      margin-right: @base-margin;
+      &:last-of-type {
+        margin-right: 0;
+      }
+
+    }
+  }
+  .footer-text-wrapper {
+    .font-size(1.5);
+    line-height: 1.4em;
+    .footer-address  {
+      padding: @base-margin 0;
+    }
+  }
+
+  @media screen and (min-width: @screen-sm-max){
+    h3.widget-title {
+      text-align: left;
+      margin-bottom:4px;
+    }
+    ul.menu {
+      text-align: left;
+      li {
+        display: block;
+        margin-right:0
+      }
+    }
+	}
+}
+
+&.section-footer-gallery {
+  .box-shadow(6px 3px 24px rgba(0, 0, 0, 0.35));
+  position: relative;
+  .__st_gallery_thumb_wrapper {
+    li {
+      margin-bottom: 0 !important;
+      a {
+          margin: 0px;
+          width: 101%;
+      }
+    }
+  }
+}
+
+&.section-footer-copyright {
+  background-position: center;;
+  background-size: auto;
+  background-attachment:scroll;
+  background-repeat: repeat;
+  background-color: #84a7b4;
+
+  //.box-shadow(inset 0px -1px 92px 0px rgba(0,0,0,0.75));
+  padding: @base-margin * 2 @base-margin  @base-margin  !important;
+  text-align: center;
+  color: #fff;
+  .footer-terms {
+    text-align: center;
+  }
+  a {
+    &, &:visited, &:focus, &:active {
+      color: #fff;
+    }
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .inner-container {
+    padding: 0;
+  }
+  @media screen and (min-width: @screen-sm-max){
+    padding: @base-margin * 2  !important;
+    text-align: left;
+    .footer-terms {
+      text-align: right;
+    }
+  }
+}

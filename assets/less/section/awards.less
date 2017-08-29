@@ -1,0 +1,125 @@
+&.section-awards {
+  text-align: center;
+  background-color: #fff;
+  background-position: center;;
+  background-size: auto;
+  background-attachment:scroll;
+  background-repeat: repeat;
+  position: relative;
+  top: 0px;
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  .animated-control-wrapper .animiated-control-arrow span:before, .animated-control-wrapper .animiated-control-arrow span:after { background-color: #1396C0;}
+  .carousel-inner {
+    margin: 0 auto;
+    width: 80%;
+  }
+  .col-xs-4 {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+  .award-item-wrapper {
+    background-position: center;
+    background-size: 100%;
+    background-attachment:scroll;
+    background-repeat: no-repeat;
+  }
+  .award-title {
+    display: none;
+    position: relative;
+
+    text-align: center;
+    margin-bottom: -4px;
+    font-size: 0.9em;
+    line-height: 1.3em;
+  }
+  .award-publisher {
+      font-size: 0.75em;
+      line-height: 1.3em;
+      text-transform: uppercase;
+  }
+  .award-item-wrapper {
+    text-align: center;
+    margin: 0 4px;
+    .award-item-content {
+      margin: 0 auto;
+      img {
+        width : 100%;
+        max-height: 200px;
+        max-width: 290px;
+        position: relative;
+
+      }
+    }
+  }
+  .animated-control-wrapper, .slick-slider{
+    .animiated-control-arrow {
+      span {
+        &:before, &:after {
+          background-color: #84a7b4;
+        }
+      }
+    }
+  }
+  @media screen and (min-width: @screen-sm-max){
+
+    .award-item-content {
+      margin: 0 55px;
+    }
+
+    .col-xs-4 {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    .award-title {
+      display: block;
+      font-size: 1.1em;
+      margin-bottom: 4px;
+      line-height: 1.5em;
+    }
+    .award-publisher {
+      font-size: 0.8em;
+      line-height: 1.5em;
+    }
+    .award-item-wrapper {
+      margin: 0 15px;
+      .award-item-content {
+        img {
+          width: 100%
+        }
+      }
+    }
+	}
+  @media screen and (min-width: @screen-md-max){
+    .carousel-inner {
+      width: 100%;
+    }
+    .award-item-content {
+      margin: 0 70px;
+    }
+    .award-item-wrapper {
+      margin: 0 45px;
+    }
+	}
+  @media screen and (min-width: @screen-lg-max){
+    .inner-container {
+        padding: @base-margin * 4  0 ;
+    }
+    .award-item-wrapper {
+      margin: 0 85px;
+      .award-item-content {
+        img {      }
+      }
+    }
+	}
+}
+
+
+.home-content-award-wrapper {
+	height: 210px;
+	background-position: center;
+	background-size:  auto;
+	background-repeat: no-repeat;
+	margin-bottom: 12px;
+
+}

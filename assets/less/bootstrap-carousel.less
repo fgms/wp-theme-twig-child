@@ -1,0 +1,31 @@
+@indicator-active-color: @heading-color;
+
+.carousel-control{
+	//this removes shadding on nav
+	background-image: none !important;
+}
+
+.carousel {
+	.carousel-indicators {		
+		li {			
+			height: 14px;
+			width: 14px;
+		
+			&.active {				
+				background-color: @indicator-active-color;
+				border-color: @indicator-active-color;
+			}			
+		}
+		display: none;
+		visibility: hidden;
+
+	}
+	@media screen and (min-width: @screen-lg-max){
+		.carousel-indicators {
+			display: block;
+			visibility: visible;
+		}
+	}
+	
+}
+

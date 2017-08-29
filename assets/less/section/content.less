@@ -1,0 +1,31 @@
+&.section-home-content {
+  h1 {
+    text-align: center;
+  }
+  .intro-text {
+        text-align: center;
+  }
+  .container {
+    //background-color: rgba(255,255,255, 0.3);
+  }
+  .inner-container .home-content-text {
+      background-color: rgba(255,255,255, 0.9);
+      padding: @base-margin * 3.5;
+
+  }
+  .action-buttons {
+    text-align: center;
+    margin-top: @base-margin * 3;
+    a {
+      min-width: 200px;
+      margin: 8px;
+    }
+  }
+  @media screen and (min-width: @screen-md-max){
+		padding: 0 !important;
+    .inner-container {
+      padding: 75px;
+      min-height: 1000px;
+    }
+  }
+}

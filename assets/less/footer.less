@@ -1,0 +1,123 @@
+/********* FOOTER ***********/
+@footer-color: @body-color;
+@footer-background-color: #074a70;
+
+
+// links in footer
+@footer-link-color: @body-color;
+@footer-link-color-hover: @body-color;
+//social icon inner or if no outer just link
+@footer-social-icon-inner-color: @body-color;;
+@footer-social-icon-inner-color-hover: @link-color-hover;
+
+//outer color ie circle or square
+@footer-social-icon-outer-color: #fff;
+
+
+.footer {
+	background-image: url('@{assetsPath}/images/footer-background.jpg');
+  background-position: center;;
+  background-size: auto;
+  background-attachment:scroll;
+  background-repeat: repeat;
+
+	h3, .h3 {
+		color: #4998CA;
+
+	}
+	.footer-logo {
+
+		width: 100%;
+
+		margin: 30px auto 36px;
+	  text-align: center;
+		img {
+			display: inline;
+			with: 100%;
+		}
+	}
+	.hover-underline-middle {
+		a::after {
+			top: -1px;
+		}
+	}
+	
+	.social-icons {
+		padding-top: 18px;
+		.a(@footer-social-icon-inner-color,none,@footer-social-icon-inner-color-hover,none);
+		a {
+			.transition(0.25s);
+
+		}
+
+		.fa-stack.fa-lg {
+			font-size: 1.5em;
+
+		}
+		i.icon-outer {
+			color: @footer-social-icon-outer-color;
+		}
+	}
+
+
+
+	.social-icons {
+		margin-bottom: @base-margin;
+		line-height: 1em;
+	}
+
+	.footer-copyright {
+		font-size: 0.8em;
+	}
+
+	.footer-navigation {
+		padding: 0 0 @base-margin;
+
+	}
+	.footer-terms {
+		font-size: 0.8em;
+	}
+
+	.footer-content-wrapper{
+		&.right {
+			text-align: center;
+			padding-top: @base-margin;
+		}
+	}
+
+	@media screen and (min-width: @screen-xs-max) {
+		.footer-logo {
+
+			width: 100%;
+		}
+	}
+	@media screen and (min-width: @screen-sm-max){
+		.footer-navigation {
+
+		}
+
+	}
+	@media screen and (min-width: @screen-md-max){
+		.inner-container {
+			padding: @base-margin * 4  0 ;
+		}
+		.footer-navigation {
+
+		}
+		.footer-content-wrapper{
+			&.right {
+				text-align: left;
+				padding-top: 0;
+			}
+		}
+		.footer-logo {
+			margin-top: 0;
+		}
+	}
+
+	@media screen and (min-width: @screen-lg-max){
+		.footer-navigation {
+			padding: 0;
+		}
+	}
+}
