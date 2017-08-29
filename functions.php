@@ -20,10 +20,10 @@ add_action('after_switch_theme', function(){
   add_action( 'admin_notices', function(){
     $messages = [];
     if (!is_plugin_active('wp-less/bootstrap.php')){
-    	$messages[] = __( 'This Theme uses wp-less plugin for enhanced css', 'wp-theme-twig-child' );
+    	$messages[] = __( 'Warning! This Theme uses wp-less plugin for enhanced css', 'wp-theme-twig-child' );
     }
     foreach ($messages as $message){
-      printf( '<div class="warning notice is-dismissable"><p>%s</p></div>',  esc_html( $message ) );
+      printf( '<div class="notice notice-warning is-dismissible"><p>%s</p></div>',  esc_html( $message ) );
     }
   });
 })

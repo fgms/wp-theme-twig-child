@@ -1,24 +1,24 @@
-social:        
+social:
     facebook:
         url: 'https://www.facebook.com/'
         icon:
             inner: fa-facebook-f
-           
+
     twitter:
         url: 'https://twitter.com/'
         icon:
             inner: fa-twitter
-           
+
     googleplus:
         url: 'https://plus.google.com/'
         icon:
             inner: fa-google-plus
-           
+
     youtube:
         url: 'https://www.youtube.com/'
         icon:
             inner: fa-youtube
-                
+
     pinterest:
         url: 'https://www.pinterest.com/'
         icon:
@@ -27,12 +27,12 @@ social:
         url: 'https://www.instagram.com'
         icon:
             inner: fa-instagram
-            
+
     tripadvisor:
         url: 'https://www.tripadvisor.com'
         icon:
-            inner: fa-tripadvisor                
-   
+            inner: fa-tripadvisor
+
     blog:
         url: '/blog/'
         icon:
@@ -41,90 +41,57 @@ social:
 company:
     name: Fifth Gear Marketing
     address:
-        street: Street       
-        province: Province       
+        street: Street
+        province: Province
         country: Country
 phone:
     toll: 888.000.0000
-    reception: 250.000.0000  
-    
-    
+    reception: 250.000.0000
 email:
     info: info@fifthgeardev.com
-    
-    
 settings:
     header:
         logo:
-            url: /assets/images/logo-gcbc.png
+            url:
     slideshow:
         home:
             template: 'slideshow-home'
         logo:
-            url: /wp-content/themes/wp-theme-fg-child/assets/images/templates/logo.png
+            url:
             alt: Logo
     page:
         grid:
             left: col-sm-12
-           
-             
+
+
     footer:
         grid:
-            left:  col-lg-6 col-lg-push-6 
+            left:  col-lg-6 col-lg-push-6
             right: col-lg-6 col-lg-pull-6
         logo:
-            url: /assets/images/logo-gcbcf-white.png
-            alt: GCBC Logo
+            url:
+            alt:
         social:
             enable: true
 
-            
+
     copyright:
         grid:
-            left:  col-lg-6 col-lg-push-6 
+            left:  col-lg-6 col-lg-push-6
             right: col-lg-6 col-lg-pull-6
         text: ', Fifth Gear Marketing'
         year: 2017
     modal:
-        logo: /wp-content/themes/wp-theme-fg-child/assets/images/templates/logo.png
-        
+        logo:
+
 postid:
-    terms: 13
-    privacy: 16
-    contactmodal: 35
-        
+    terms: 2
+    privacy: 2
+    contactmodal: 2
+
 forms:
     footer:
         id: 4
-        
+
 slideshow:
-    location: afternav    
-    home:
-        '@import' : 'slideshows/home.yml'
-      
-gallery:
-    home:
-        directory : 
-            root : '/wp-content/themes/wp-theme-fg-child/assets/images/gallery/'
-            thumbs : 'thumb/'
-            medium : ''
-            large : 'large/' 
-        class : 'script-grid-gallery gallery-grid-20'
-        filter : 
-            enable : false       
-        filters :
-            -
-                title : 'Videos'
-                slug : 'video'
-            -
-                title : 'Test'
-                slug : 'test'
-        options : 
-            group : homepage
-            hover : true            
-            thumbsperrow : 5
-            thumbpadding : 0
-            random : false
-            enable:
-               
-        images : 
+    location: afternav
