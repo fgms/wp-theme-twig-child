@@ -1,0 +1,151 @@
+{% macro property(name,properties)%}
+{% for p in properties %}
+  {% if p.property_name == name %}
+  {% set id = p.property_logo is iterable ? p.property_logo | first : p.property_logo %}
+    {% if id + 0 > 0 %}
+      {{TimberImage(id).src}}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% endmacro %}
+{% macro styles(name)%}
+  {% if name == 'The Shore Club' %}
+    background-color: #ff7760;color: #ffffff;
+  {% elseif name == 'The Palms Turks & Caicos' %}
+    background-color: #7399C6;color: #ffffff;
+  {% elseif name == 'The Sands Turks & Caicos' %}
+    background-color: #00a1a0;color: #ffffff;
+  {% else %}
+    background-color: #ffffff;
+  {% endif %}
+{% endmacro %}
+{% import _self as special %}
+
+{% extends 'base.twig' %}
+{% block content %}
+
+{% set content %}
+{% set options = function('get_option', 'special_settings') %}
+{# Lets get all property logos, and fitlers #}
+{% set vip_banner_image = false %}
+{% if options.vip_banner %}
+  {% set banner_id = (options.vip_banner is iterable)  ? options.vip_banner | first : options.vip_banner %}
+  {% set vip_banner_image  = TimberImage(banner_id) %}
+{% endif %}
+{% filter shortcodes %}
+<h1 class="archive-title">{{archive_title}}</h1>
+<div style="margin-bottom: 46px;" class="highlight-text">
+  [wpmem_logged_out]
+  [vip_specials_active  singular="there is %d additional special offer"
+                    plural="there are %d additional special offers"
+                    zero ="<p class='intro-text' style='font-size:1.2em;'>In addition to the special offers below, VIP club members get exclusive or early access to additional offers, packages and unique VIP benefits. <a href='{{function('get_permalink',2621)}}'>Login</a> as a VIP Club member to view. Not a VIP member? <a href='{{function('get_permalink',3396)}}' >Sign up today</a>. It's free!</p>" ]
+  <p class="intro-text">In addition to the special offers below, %s  available to VIP Club members.
+     <a href="{{function('get_permalink',2)}}">Login</a> as a VIP Club member to view.
+  Not a VIP member? <a href="{{function('get_permalink',9)}}">Sign up today</a>.  It's free!</p>
+  [/vip_specials_active]
+[/wpmem_logged_out]
+</div>
+<div class="special-filters">
+  <button class="btn btn-default btn-sm active" data-filter="*">All</button>
+  {% for f in options.special_type %}
+		<button class="btn btn-default btn-sm" data-filter=".{{f.special_slug}}">{{f.special_name}}</button>
+  {% endfor %}
+</div>
+<ul class="card-wrapper">
+{% for article in posts | reverse %}
+  {% if  article.get_field('_wpmem_block') != 1 or function('is_user_logged_in') %}
+  {# checking if gallery exists, if so lets use the first image for card #}
+  {% set image_id = 0 %}
+  {% set gpost = false %}
+  {% set feature_image = false %}
+
+  {% set gpost_id = article.get_field('sidebar-gallery') %}
+  {% if gpost_id + 0 > 0 %}
+    {% set gpost = TimberPost(gpost_id) %}
+    {% set gallery = gpost.get_field('cp_gallery') %}
+    {% set thumb_id =  gallery|first['thumb']|first + 0 %}
+    {% set image_id =  gallery|first['image']|first + 0 %}
+    {% set image_id = thumb_id > 0 ? thumb_id : image_id %}
+  {% endif %}
+
+  {# check if gallery has a valid image otherwise use feature #}
+  {% if  (image_id + 0) == 0  %}
+    {% set image_id = article.get_field('slideshow')['feature-image'] %}
+    {% if image_id is iterable %}{% set image_id = image_id | first %}{% endif %}
+  {% endif %}
+  {# check if what ever was choosen if it is a valid image. #}
+  {% if  image_id + 0 > 0 %}
+    {% set feature_image = TimberImage(image_id) %}
+  {% endif %}
+
+  <li class="card-item-4 {{article.get_field('fg_special_type')| join(" ")}}" >
+    <article class="article {{class}}" itemscope itemtype="http://schema.org/Article">
+      <meta itemprop="author" content="{{ article.author }}" />
+      <div class="{{class_container}}" style="position:relative;" >
+        <div class="{{class_main}}" style="overflow: hidden;">
+
+          <div class="card-content-background" {% if feature_image %}data-background="{{feature_image.src|resize(500)}}" {% endif %}>
+            <div class="card-content-overlay">
+              <div class="card-gradient"></div>
+              <div class="card-header "
+                {% if vip_banner_image and article.get_field('_wpmem_block') == 1 %}
+                 data-background="{{vip_banner_image.src}}" style="background-position: top left; background-size: initial;background-repeat:no-repeat;height:auto;"
+               {% endif %}
+               >
+                <a href="{{ article.link }}" title="{{ article.title | escape }}" itemprop="url">
+                    <h2 class="article-title" itemscope="name">{{article.title}}</h2>
+                </a>
+              </div>
+
+
+              <div  itemprop="articleBody" class="article-body">
+                <a href="{{article.link}}" class="card-content" >
+                  <div >
+                    {{article.get_field('fg-summary')|striptags| truncate(25) }}
+                    <span style="display: block;padding-top:12px;;"><button  class="btn btn-secondary">Learn More</button></span>
+                  </div>
+                </a>
+              </div><!-- articleContent -->
+            </div>
+          </div>
+
+          {% set img_url = special.property(article.get_field('fg_special_properties'),options.special_properties) %}
+          <div class="card-footer" style="{{special.styles(article.get_field('fg_special_properties'))| trim}}">
+            <div >
+              {% if img_url | length > 5 %}
+              <div class="card-logo-section" >
+                <div class="card-logo-wrapper">
+                  <a href="{{article.link}}" data-background="{{img_url}}" >
+                    <img src="{{img_url}}" alt="{{publisher}} Logo" />
+                  </a>
+                </div>
+              </div>
+              {% endif %}
+              <div {% if img_url | length > 5 %}class="card-details-section" {% else %}{% endif %} >
+                <table class="table">
+                  <tr><td>Travel Start</td><td>{{article.get_field('fg-start-date')}}</td></tr>
+                  <tr><td>Travel End</td><td>{{article.get_field('fg-end-date')}}</td></tr>
+                  <tr><td>Expires</td><td>{{article.get_field('fg-booking-end-date')}}</td></tr>
+                </table>
+              </div>
+              <div class="clear-fix clearfix" style="clear: both;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </li>
+  {% endif %}
+{% endfor %}
+</ul>
+{% endfilter  %}
+{% include 'pagination.twig' %}
+
+{% endset %}
+
+{% include 'base-page.twig' with {
+	page_class_content : 'col-sm-12',
+	page_content : content
+	}
+%}
+{% endblock %}

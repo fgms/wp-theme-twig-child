@@ -9,10 +9,10 @@ add_action( 'wp_enqueue_scripts', function(){
 
   wp_enqueue_style('typlayer',get_stylesheet_directory_uri().'/assets/css/YTPlayer.css');
   if (is_plugin_active('wp-less/bootstrap.php')){
-   wp_enqueue_style('theme-less',get_stylesheet_directory_uri().'/assets/less/style.less');
+   wp_enqueue_style('child-theme-less',get_stylesheet_directory_uri().'/assets/less/style.less');
   }
   else {
-   wp_enqueue_style('theme',get_stylesheet_directory_uri().'/assets/css/style.css');
+   wp_enqueue_style('child-theme',get_stylesheet_directory_uri().'/assets/css/style.css');
   }
 }, 30);
 
